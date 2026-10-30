@@ -105,7 +105,7 @@ function launch(url,pkg){
 }
 async function load(){
  el("msg").textContent="အချက်အလက်များကို ဖတ်နေပါသည်…";
- try{const r=await fetch(API_URL,{cache:"no-store"});if(!r.ok)throw Error("HTTP "+r.status);const j=await r.json();if(!j.success||!Array.isArray(j.data))throw Error(j.message||"API data မမှန်ပါ");allMatches=j.data;render();el("msg").textContent="Google Sheet မှ အချက်အလက် ရရှိပါပြီ။"}
+ try{const r=await fetch(API_URL,{cache:"no-store"});if(!r.ok)throw Error("HTTP "+r.status);const j=await r.json();if(!j.success||!Array.isArray(j.data))throw Error(j.message||"API data မမှန်ပါ");allMatches=j.data;render();el("msg").textContent="ပွဲစဉ် အချက်အလက်များ ရရှိပါပြီ။"}
  catch(e){el("msg").textContent="အချက်အလက် ဖတ်မရပါ။ Internet သို့မဟုတ် API ကို စစ်ဆေးပါ။";if(!allMatches.length){el("matches").innerHTML='<div class="error">ချိတ်ဆက်မှု မအောင်မြင်ပါ။ Internet စစ်ဆေးပြီး ပြန်ဖတ်ရန် နှိပ်ပါ။</div>';el("count").textContent="—"}}
 }
 document.querySelectorAll(".tab").forEach(b=>b.addEventListener("click",()=>{activeFilter=b.dataset.filter;render()}));
