@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="my">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#090b10">
+<title>GOLD PREMIUM • Football Live</title>
+<style>
+:root{--bg:#090b10;--gold:#e8bd62;--gold2:#ffe3a0;--muted:#aab4c2;--white:#f7f4ec;--line:#3a3325}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 50% -15%,#293246 0,#10151e 42%,var(--bg) 80%);color:var(--white);font-family:system-ui,-apple-system,"Noto Sans Myanmar",sans-serif}
+button,input{font:inherit}button{cursor:pointer}
+.topbar{position:sticky;top:0;z-index:5;background:#090b10ed;backdrop-filter:blur(14px);border-bottom:1px solid #e8bd6233}
+.top-inner{max-width:1320px;margin:auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:15px}
+.brand{display:flex;align-items:center;gap:12px}.brand-mark{width:46px;height:46px;display:grid;place-items:center;border-radius:14px;background:linear-gradient(145deg,#ffe6a3,#b77b23);color:#17120a;font-size:24px}
+.brand-name{font-size:19px;font-weight:900;letter-spacing:1.7px;color:var(--gold2)}.brand-sub{font-size:10px;letter-spacing:2px;color:#9ea8b7;margin-top:3px}
+.refresh,.icon-btn{border:1px solid #e8bd6244;background:#171d27;color:var(--gold2);border-radius:11px;padding:11px 15px}.icon-btn{width:46px;height:46px;padding:0;font-size:22px}
+.wrap{max-width:1320px;margin:auto;padding:26px 24px 45px}
+.hero{position:relative;overflow:hidden;border:1px solid #e8bd6244;border-radius:23px;padding:30px;background:linear-gradient(112deg,#1a202b,#171b22 55%,#292013);box-shadow:0 18px 50px #0005}
+.hero:after{content:"⚽";position:absolute;right:7%;top:50%;transform:translateY(-50%) rotate(-18deg);font-size:clamp(100px,17vw,190px);opacity:.075;pointer-events:none}
+.eyebrow{font-size:11px;letter-spacing:3px;color:var(--gold);font-weight:850}.hero h1{font-size:clamp(27px,4vw,42px);margin:9px 0 6px}.hero p{margin:0;color:#b4bdc9;font-size:14px}
+.hero-bottom{display:flex;gap:11px;align-items:center;flex-wrap:wrap;margin-top:20px}.live-pill{display:inline-flex;align-items:center;gap:7px;padding:7px 11px;border-radius:30px;background:#3a1920;color:#ff9ba5;font-size:11px;font-weight:850;letter-spacing:1px}.dot{width:7px;height:7px;border-radius:50%;background:#ff6474;box-shadow:0 0 10px #ff6474}.update-note{color:#9ba6b5;font-size:12px}
+.toolbar{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:25px 0 15px;flex-wrap:wrap}.tabs{display:flex;gap:8px;flex-wrap:wrap}.tab{border:1px solid #303947;background:#131923;color:#aeb8c6;padding:10px 15px;border-radius:11px;font-size:13px;font-weight:800}.tab.active{background:linear-gradient(135deg,#f4d58d,#c18b36);border-color:#e6bd69;color:#19140b}.tools{display:flex;gap:8px;align-items:center}.search{width:min(240px,48vw);background:#131923;border:1px solid #303947;border-radius:11px;color:white;padding:11px 13px;outline:none}
+.countline{display:flex;justify-content:space-between;align-items:center;margin:0 1px 13px;color:var(--muted);font-size:12px}.countline strong{color:var(--gold2);font-size:14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:15px}
+.card{position:relative;min-width:0;display:flex;gap:14px;align-items:center;padding:17px;border-radius:18px;border:1px solid #303947;background:linear-gradient(145deg,#171e29,#111720);box-shadow:0 9px 25px #0002;transition:transform .15s,border-color .15s,box-shadow .15s}
+.card:before{content:"";position:absolute;left:0;top:18px;bottom:18px;width:3px;border-radius:0 4px 4px 0;background:linear-gradient(var(--gold2),#a36b20)}
+.logo-wrap{width:72px;height:72px;flex:0 0 72px;border-radius:15px;background:#f7f7f7;display:grid;place-items:center;overflow:hidden;padding:7px}.logo{width:100%;height:100%;object-fit:contain}
+.info{min-width:0;flex:1}.league{font-size:15px;font-weight:850;line-height:1.4;overflow-wrap:anywhere}.datetime{font-size:12px;color:#aab4c2;margin:6px 0 10px}
+.card-foot{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}.status{display:inline-flex;align-items:center;gap:6px;border-radius:20px;padding:5px 9px;font-size:10px;font-weight:850;letter-spacing:.7px;background:#253143;color:#d9e3f1}.status.live{background:#401d26;color:#ff9da8}.status.live:before{content:"";width:6px;height:6px;border-radius:50%;background:#ff596b}.status.finished{background:#28313d;color:#bdc6d2}
+.watch{border:0;border-radius:10px;padding:9px 13px;background:linear-gradient(135deg,#ffe5a2,#c38b34);color:#21180a;font-size:12px;font-weight:900}
+.card:focus,.card:focus-visible,.tab:focus-visible,.refresh:focus-visible,.icon-btn:focus-visible,.watch:focus-visible,.choice:focus-visible,.close:focus-visible,.search:focus-visible{outline:3px solid var(--gold2);outline-offset:4px;border-color:var(--gold2);box-shadow:0 0 0 6px #e8bd6226,0 12px 32px #0008}
+.card:focus{transform:scale(1.025);background:linear-gradient(145deg,#252a31,#171d26)}
+.empty,.loading,.error{grid-column:1/-1;text-align:center;padding:36px 18px;border:1px dashed #394454;border-radius:16px;color:#aab4c2;background:#121822}
+.footer{text-align:center;color:#657184;font-size:11px;padding:28px 0 4px}
+dialog{width:min(92vw,430px);border:1px solid #8a6934;border-radius:20px;background:linear-gradient(145deg,#1c2430,#10151d);color:var(--white);padding:22px;box-shadow:0 24px 90px #000b}
+dialog::backdrop{background:#000c;backdrop-filter:blur(4px)}.dialog-kicker{color:var(--gold);font-size:10px;font-weight:850;letter-spacing:2px}dialog h2{font-size:22px;margin:8px 0 5px}.hint{color:#9da9b8;font-size:13px;margin:0 0 17px}.choices{display:grid;gap:10px}
+.choice{display:flex;align-items:center;justify-content:space-between;width:100%;text-align:left;border:1px solid #354254;border-radius:13px;padding:15px;background:#192230;color:#f6f2e9;font-weight:800}.choice:after{content:"›";font-size:24px;color:var(--gold)}.choice:focus,.choice:hover{border-color:var(--gold);background:#252b34}
+.close{width:100%;margin-top:14px;padding:12px;border:1px solid #3b4655;background:transparent;color:#c4ccd7;border-radius:11px}
+@media(min-width:850px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(min-width:1200px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))}.card{padding:18px}.logo-wrap{width:78px;height:78px;flex-basis:78px}.league{font-size:16px}.watch,.tab,.refresh{font-size:14px}}
+@media(max-width:600px){.top-inner{padding:11px 14px}.wrap{padding:16px 13px 35px}.hero{padding:21px 18px}.brand-name{font-size:15px}.brand-sub{font-size:9px}.toolbar{align-items:stretch}.tabs{width:100%}.tab{flex:1;padding:9px 7px}.tools{width:100%}.search{flex:1;width:100%}.refresh{white-space:nowrap}.card{padding:13px}.logo-wrap{width:64px;height:64px;flex-basis:64px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<header class="topbar"><div class="top-inner">
+ <div class="brand"><div class="brand-mark">⚽</div><div><div class="brand-name">GOLD PREMIUM</div><div class="brand-sub">FOOTBALL LIVE</div></div></div>
+ <button class="icon-btn" id="refreshTop" aria-label="Refresh">↻</button>
+</div></header>
+<main class="wrap">
+ <section class="hero"><div class="eyebrow">MATCH CENTER</div><h1>Football Live</h1><p>ပွဲစဉ်များကို ကြည့်ရှုရန် ရွေးချယ်ပါ</p><div class="hero-bottom"><span class="live-pill"><i class="dot"></i> MATCH UPDATES</span><span class="update-note">ပွဲစဉ်အချက်အလက်များ အလိုအလျောက် ပြန်လည်ဖတ်ရှုမည်</span></div></section>
+ <section class="toolbar"><div class="tabs">
+  <button class="tab active" data-filter="ALL">အားလုံး</button><button class="tab" data-filter="LIVE">LIVE</button><button class="tab" data-filter="UPCOMING">UPCOMING</button><button class="tab" data-filter="FINISHED">FINISHED</button>
+ </div><div class="tools"><input class="search" id="search" type="search" placeholder="ပွဲစဉ် ရှာရန်..." aria-label="Search matches"><button class="refresh" id="refresh">ပြန်ဖတ်ရန် ↻</button></div></section>
+ <div class="countline"><span id="msg" aria-live="polite">Google Sheet မှ ဖတ်နေပါသည်...</span><strong id="count">—</strong></div>
+ <section id="matches" class="grid" aria-live="polite"><div class="loading">ပွဲစဉ်များကို ဖတ်နေပါသည်…</div></section>
+ <div class="footer">GOLD PREMIUM • FOOTBALL LIVE</div>
+</main>
+<dialog id="dlg"><div class="dialog-kicker">GOLD PREMIUM</div><h2 id="dlgTitle">Server ရွေးချယ်ပါ</h2><p id="hint" class="hint">အသုံးပြုမည့် Server ကို ရွေးပါ။</p><div id="choices" class="choices"></div><button class="close" id="close">ပိတ်ရန်</button></dialog>
+<script>
+const API_URL="https://script.google.com/macros/s/AKfycbyt7PPekcreUM9mYfLCAG2C0w7DW7-XQK0bcGCq-xxuOaac6FrCjdLJNoC0BZXkj_89/exec";
+const MX_PACKAGE="com.mxtech.videoplayer.ad";
+const NETWORK_PACKAGE="com.genuine.leone";
+const el=id=>document.getElementById(id);
+let allMatches=[],current=null,activeFilter="ALL";
+
+function statusName(v){const s=String(v||"UPCOMING").trim().toUpperCase();return ["LIVE","FINISHED"].includes(s)?s:"UPCOMING"}
+function makeCard(m){
+ const c=document.createElement("article");c.className="card";c.tabIndex=0; c.setAttribute("role","group");
+ const lw=document.createElement("div");lw.className="logo-wrap";
+ const img=document.createElement("img");img.className="logo";img.alt="League logo";
+ const fb=document.createElement("span");fb.textContent="⚽";fb.style.cssText="display:none;color:#222;font-size:25px";
+ img.onload=()=>{img.style.display="block";fb.style.display="none"};img.onerror=()=>{img.style.display="none";fb.style.display="block"};
+ if(m.logo)img.src=m.logo;else{img.style.display="none";fb.style.display="block"}lw.append(img,fb);
+ const info=document.createElement("div");info.className="info";
+ const name=document.createElement("div");name.className="league";name.textContent=m.matchName||"Football Match";
+ const dt=document.createElement("div");dt.className="datetime";dt.textContent=[m.matchDate,m.matchTime].filter(Boolean).join("  •  ")||"ပွဲချိန် မသတ်မှတ်ရသေးပါ";
+ const foot=document.createElement("div");foot.className="card-foot";
+ const st=document.createElement("span");const s=statusName(m.status);st.className="status "+s.toLowerCase();st.textContent=s;
+ const b=document.createElement("button");b.className="watch";b.textContent="ကြည့်ရန်  ›";b.onclick=()=>openServers(m);
+ c.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){if(e.target===c){e.preventDefault();openServers(m)}}});
+ foot.append(st,b);info.append(name,dt,foot);c.append(lw,info);return c;
+}
+function render(){
+ const q=el("search").value.trim().toLocaleLowerCase();
+ const list=allMatches.filter(m=>(activeFilter==="ALL"||statusName(m.status)===activeFilter)&&(!q||[m.matchName,m.matchDate,m.matchTime,m.status].join(" ").toLocaleLowerCase().includes(q)));
+ el("matches").replaceChildren();
+ if(!list.length){const d=document.createElement("div");d.className="empty";d.textContent="⚽  ပြသရန် ပွဲစဉ်မရှိသေးပါ။";el("matches").append(d)}
+ else list.forEach(m=>el("matches").append(makeCard(m)));
+ el("count").textContent=list.length+" / "+allMatches.length+" ပွဲ";
+ document.querySelectorAll(".tab").forEach(b=>b.classList.toggle("active",b.dataset.filter===activeFilter));
+}
+function showDialog(title,hint,items){
+ el("dlgTitle").textContent=title;el("hint").textContent=hint;el("choices").replaceChildren();
+ items.forEach(([label,fn])=>{const b=document.createElement("button");b.className="choice";b.textContent=label;b.onclick=fn;el("choices").append(b)});
+ if(!items.length){const p=document.createElement("p");p.className="hint";p.textContent="ရွေးချယ်စရာ မရှိသေးပါ။";el("choices").append(p)}
+ el("dlg").showModal();const first=el("choices").querySelector("button");if(first)first.focus();
+}
+function openServers(m){current=m;const a=[];if(m.server1)a.push(["Server 1",()=>openPlayers(m.server1)]);if(m.server2)a.push(["Server 2",()=>openPlayers(m.server2)]);showDialog(m.matchName||"Server ရွေးချယ်ပါ","အသုံးပြုမည့် Server ကို ရွေးချယ်ပါ။",a)}
+function openPlayers(url){const a=[];if(current&&current.player1)a.push(["MX Player",()=>launch(url,MX_PACKAGE)]);if(current&&current.player2)a.push(["Network Stream Player",()=>launch(url,NETWORK_PACKAGE)]);showDialog("Player ရွေးချယ်ပါ","ဖွင့်မည့် Player ကို ရွေးချယ်ပါ။",a)}
+function launch(url,pkg){
+ try{const u=new URL(url);const intent="intent://"+u.host+u.pathname+u.search+"#Intent;scheme="+u.protocol.slice(0,-1)+";action=android.intent.action.VIEW;type=video/*;package="+pkg+";end";el("dlg").close();window.location.href=intent}
+ catch(e){el("msg").textContent="Server Link ကို စစ်ဆေးပါ။"}
+}
+async function load(){
+ el("msg").textContent="အချက်အလက်များကို ဖတ်နေပါသည်…";
+ try{const r=await fetch(API_URL,{cache:"no-store"});if(!r.ok)throw Error("HTTP "+r.status);const j=await r.json();if(!j.success||!Array.isArray(j.data))throw Error(j.message||"API data မမှန်ပါ");allMatches=j.data;render();el("msg").textContent="Google Sheet မှ အချက်အလက် ရရှိပါပြီ။"}
+ catch(e){el("msg").textContent="အချက်အလက် ဖတ်မရပါ။ Internet သို့မဟုတ် API ကို စစ်ဆေးပါ။";if(!allMatches.length){el("matches").innerHTML='<div class="error">ချိတ်ဆက်မှု မအောင်မြင်ပါ။ Internet စစ်ဆေးပြီး ပြန်ဖတ်ရန် နှိပ်ပါ။</div>';el("count").textContent="—"}}
+}
+document.querySelectorAll(".tab").forEach(b=>b.addEventListener("click",()=>{activeFilter=b.dataset.filter;render()}));
+el("search").addEventListener("input",render);el("refresh").addEventListener("click",load);el("refreshTop").addEventListener("click",load);
+el("close").addEventListener("click",()=>el("dlg").close());
+el("dlg").addEventListener("click",e=>{if(e.target===el("dlg"))el("dlg").close()});
+
+// TV remote: move focus to the nearest visible control in the arrow-key direction.
+document.addEventListener("keydown",e=>{
+ if(!["ArrowRight","ArrowLeft","ArrowDown","ArrowUp"].includes(e.key))return;
+ const active=document.activeElement;
+ if(el("dlg").open){
+   const items=[...el("dlg").querySelectorAll("button")].filter(x=>x.offsetParent!==null);
+   const i=items.indexOf(active);if(i<0)return;
+   const n=(e.key==="ArrowDown"||e.key==="ArrowRight")?i+1:i-1;
+   if(items[n]){e.preventDefault();items[n].focus()}return;
+ }
+ const items=[...document.querySelectorAll(".topbar button,.tab,.search,.tools button,.card,.card button")].filter(x=>x.offsetParent!==null);
+ if(!items.includes(active)){const first=document.querySelector(".card");if(first){e.preventDefault();first.focus()}return}
+ const a=active.getBoundingClientRect(),ax=a.left+a.width/2,ay=a.top+a.height/2;
+ let best=null,bestScore=Infinity;
+ for(const item of items){if(item===active)continue;const r=item.getBoundingClientRect(),x=r.left+r.width/2,y=r.top+r.height/2,dx=x-ax,dy=y-ay;
+  let primary,secondary;
+  if(e.key==="ArrowRight"){if(dx<=5)continue;primary=dx;secondary=Math.abs(dy)}
+  else if(e.key==="ArrowLeft"){if(dx>=-5)continue;primary=-dx;secondary=Math.abs(dy)}
+  else if(e.key==="ArrowDown"){if(dy<=5)continue;primary=dy;secondary=Math.abs(dx)}
+  else{if(dy>=-5)continue;primary=-dy;secondary=Math.abs(dx)}
+  const score=primary+secondary*1.8;if(score<bestScore){bestScore=score;best=item}
+ }
+ if(best){e.preventDefault();best.focus()}
+});
+load();setInterval(load,60000);
+</script>
+</body>
+</html>
